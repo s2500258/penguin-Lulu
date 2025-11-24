@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin Lulu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐧</text></svg>">
+</head>
+<body>
+
+    <header id="game-header">
+        <h1>Unix command lines with Lulu 🐧</h1>
+        <div id="score-display">Score: 0 / 0</div>
+    </header>
+
+    <main id="game-main-content">
+        
+        <div id="quiz-card">
+            <div class="card-content-wrapper"> 
+                
+                <div class="text-content">
+                    <p id="question-text">The question will appear here.</p>
+                    
+                    <div id="interaction-area">
+                        <input type="text" id="user-answer" placeholder="Type your answer...">
+                        <button id="submit-button">Submit</button>
+                    </div>
+
+                    <div id="feedback-area" class="hidden">
+                        <p id="result-message"></p>
+                        <p id="explanation-text"></p>
+                        <button id="next-button">Next Question</button>
+                    </div>
+                </div>
+
+                <div class="illustration-container">
+                    <img id="question-illustration" src="" alt="Question illustration" class="hidden">
+                    </div>
+
+            </div>
+            
+        </div>
+        
+    </main>
+
+    <footer id="game-footer">
+        <p>&copy; 2025 Educational Game | Created by Al Aku</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

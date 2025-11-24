@@ -1,0 +1,161 @@
+/* Basic Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    /* Use Flexbox to stack header, main, and footer */
+    display: flex;
+    flex-direction: column;
+    /* Ensure the body takes up the full viewport height */
+    min-height: 100vh; 
+}
+
+/* 1. HEADER Styling */
+#game-header {
+    background-color: #007bff; /* Bright color */
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Header content should not grow */
+    flex-shrink: 0; 
+}
+
+/* 2. MAIN Content Styling */
+#game-main-content {
+    /* This is the key: the main content takes up all available vertical space */
+    flex-grow: 1; 
+    display: flex; /* Use Flexbox/Grid to center the quiz-card inside */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background */
+}
+
+/* Style the card itself */
+#quiz-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* 3. FOOTER Styling */
+#game-footer {
+    background-color: #343a40; /* Dark color */
+    color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8em;
+    /* Footer content should not grow */
+    flex-shrink: 0; 
+}
+
+/* Utility Class for JavaScript to hide/show elements */
+.hidden {
+    display: none;
+}
+/* Updated quiz-card for internal layout */
+#quiz-card {
+    background-color: white;
+    padding: 20px; /* Reduced padding slightly as content will take up more space */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 1200px; /* Increased max-width to accommodate two halves */
+    width: 100%;
+    /* text-align: center;  No longer centered globally, content inside will align */
+}
+
+/* NEW: Flexbox container for side-by-side layout */
+.card-content-wrapper {
+    display: flex; /* Makes direct children (text-content, illustration-container) sit side-by-side */
+    gap: 20px; /* Space between the text and the image */
+    align-items: flex-start; /* Align items to the top (important for varying text heights) */
+}
+
+/* NEW: Styling for the text content side */
+.text-content {
+    flex: 1; /* Allows this div to take up available space (approx 50%) */
+    min-width: 0; /* Prevents overflow with long words */
+    text-align: left; /* Align text within its half */
+    padding-right: 10px; /* Small padding for visual separation */
+}
+
+/* NEW: Styling for the illustration side */
+.illustration-container {
+    flex: 2; /* Allows this div to take up available space (approx 50%) */
+    display: flex; /* Use flex to center the image within its container if needed */
+    justify-content: center;
+    align-items: center;
+    min-width: 0; /* Prevents overflow */
+    border-left: 1px solid #eee; /* Optional: a subtle separator line */
+    padding-left: 20px;
+}
+
+#question-illustration {
+    max-width: 100%; /* Ensures image doesn't overflow its container */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 5px; /* Slightly rounded corners for the image */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Adjustments for text elements within .text-content */
+.text-content #question-text {
+    font-size: 1.5em; /* Make question prominent */
+    margin-bottom: 20px;
+}
+
+.text-content #user-answer {
+    width: calc(100% - 22px); /* Adjust width to fit with padding/border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.text-content #submit-button,
+.text-content #next-button {
+    background-color: #28a745; /* Green for action buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.text-content #submit-button:hover,
+.text-content #next-button:hover {
+    background-color: #218838;
+}
+
+.text-content #feedback-area p {
+    margin-top: 15px;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+.text-content #feedback-area #explanation-text {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+    .card-content-wrapper {
+        flex-direction: column; /* Stack vertically on small screens */
+    }
+    .illustration-container {
+        border-left: none; /* Remove separator */
+        border-top: 1px solid #eee; /* Add separator on top */
+        padding-left: 0;
+        padding-top: 20px;
+    }
+}
