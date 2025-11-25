@@ -14,16 +14,26 @@
 
     <header id="game-header">
         <h1>Unix command lines with Lulu 🐧</h1>
-        <div id="score-display">Score: 0 / 0</div>
+        <div id="score-display"  class="hidden">Score: 0 / 0</div>
     </header>
 
     <main id="game-main-content">
+
+        <div class="intro" id="intro-container">   
+            <p id="intro-text">Lulu the Penguin lives in the Linux operating system. With it, you can practice using the CD-command 
+                        (change directory) in a Unix-based terminal. After pressing the start button, you'll see Lulu's folder tree. </br>
+                        Two folders will be randomly selected: </br>1) the terminal's current folder, </br>2) the target folder.</br> 
+                        Enter the command that will move the terminal from the current to the target folder and score points 
+                        for correct answers. </br>
+                        Good luck!</p>                    
+            <button id="start-button">Start</button>
+        </div>
         
-        <div id="quiz-card">
+        <div id="quiz-card"  class="hidden">
             <div class="card-content-wrapper"> 
                 
                 <div class="text-content">
-                    <p id="question-text">The question will appear here.</p>
+                    <p id="question-text"></p>
                     
                     <div id="interaction-area">
                         <input type="text" id="user-answer" placeholder="Type your answer...">
@@ -37,9 +47,19 @@
                     </div>
                 </div>
 
-                <div class="illustration-container">
+                <div id="illustration-container" class="hidden">
                     <img id="question-illustration" src="" alt="Question illustration" class="hidden">
-                    </div>
+                    <div id="target-rectangle"></div>
+                    <div id="origin-rectangle"></div>
+                    <svg id="arrow-svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible;">
+                    <line id="arrow-line" x1="0" y1="0" x2="0" y2="0" stroke="blue" stroke-width="4" marker-end="url(#arrowhead)"></line>
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" markerUnits="strokeWidth">
+                            <polygon points="0 0, 10 3.5, 0 7"></polygon>
+                        </marker>
+                    </defs>
+                    </svg>
+                </div>
 
             </div>
             
