@@ -5,8 +5,8 @@ const tree = [
         level2: "..",
         level3: "..",
         index: 3,
-        x: 191,
-        y: 122
+        x: 295,
+        y: 157
     },
     {
         name: "/head",
@@ -14,7 +14,7 @@ const tree = [
         level2: "..",
         level3: "..",
         index: 2,
-        x: 111,
+        x: 121,
         y: 242
     },
     {
@@ -23,7 +23,7 @@ const tree = [
         level2: "..",
         level3: "..",
         index: 2,
-        x: 281,
+        x: 291,
         y: 242
     },
     {
@@ -32,7 +32,7 @@ const tree = [
         level2: "..",
         level3: "..",
         index: 2,
-        x: 467,
+        x: 477,
         y: 242
     },
     {
@@ -41,7 +41,7 @@ const tree = [
         level2: "left-eye",
         level3: "..",
         index: 1,
-        x: 100,
+        x: 110,
         y: 306
     },
     {
@@ -50,7 +50,7 @@ const tree = [
         level2: "right-eye",
         level3: "..",
         index: 1,
-        x: 100,
+        x: 110,
         y: 360
     },
     {
@@ -59,7 +59,7 @@ const tree = [
         level2: "beak",
         level3: "..",
         index: 1,
-        x: 100,
+        x: 110,
         y: 412
     },
     {
@@ -68,7 +68,7 @@ const tree = [
         level2: "belly",
         level3: "..",
         index: 1,
-        x: 280,
+        x: 290,
         y: 323
     },
     {
@@ -77,7 +77,7 @@ const tree = [
         level2: "back",
         level3: "..",
         index: 1,
-        x: 280,
+        x: 290,
         y: 379
     },
     {
@@ -86,7 +86,7 @@ const tree = [
         level2: "back",
         level3: "tail",
         index: 0,
-        x: 323,
+        x: 333,
         y: 442
     },
     {
@@ -95,7 +95,7 @@ const tree = [
         level2: "wings",
         level3: "..",
         index: 1,
-        x: 447,
+        x: 457,
         y: 323
     },
     {
@@ -104,7 +104,7 @@ const tree = [
         level2: "paws",
         level3: "..",
         index: 1,
-        x: 447,
+        x: 457,
         y: 379
     },
     {
@@ -113,7 +113,7 @@ const tree = [
         level2: "wings",
         level3: "left-wing",
         index: 0,
-        x: 640,
+        x: 650,
         y: 265
     },
     {
@@ -122,7 +122,7 @@ const tree = [
         level2: "wings",
         level3: "right-wing",
         index: 0,
-        x: 640,
+        x: 650,
         y: 317
     },
     {
@@ -131,7 +131,7 @@ const tree = [
         level2: "paws",
         level3: "left-paw",
         index: 0,
-        x: 640,
+        x: 650,
         y: 388
     },
     {
@@ -140,8 +140,46 @@ const tree = [
         level2: "paws",
         level3: "right-paw",
         index: 0,
-        x: 640,
+        x: 650,
         y: 442
+    },
+
+// grey area
+    {
+        name: "/",
+        level1: "",
+        level2: "",
+        level3: "",
+        index: 6,
+        x: 300,
+        y: 23
+    },
+    {
+        name: "/etc",
+        level1: "",
+        level2: "",
+        level3: "",
+        index: 4,
+        x: 150,
+        y: 101
+    },
+    {
+        name: "/home",
+        level1: "",
+        level2: "",
+        level3: "",
+        index: 5,
+        x: 290,
+        y: 101
+    },
+    {
+        name: "/lib",
+        level1: "",
+        level2: "",
+        level3: "",
+        index: 4,
+        x: 454,
+        y: 101
     }
 ];
 
@@ -181,7 +219,7 @@ const updateArrowPosition = (x1,y1,x2,y2) => {
     };
 
 function choosingPair() {
-    origin = Math.floor(Math.random() * (16));
+    origin = Math.floor(Math.random() * (20));
     destination = Math.floor(Math.random() * (16));
     while (origin === destination) {
         destination = Math.floor(Math.random() * (16));
@@ -196,16 +234,17 @@ function loadQuestion() {
     userAnswerInput.value = '';
 
     let currentPair = choosingPair();
-    updateArrowPosition(tree[currentPair.destination].x,tree[currentPair.destination].y,tree[currentPair.origin].x,tree[currentPair.origin].y);
+
+    updateArrowPosition(tree[currentPair.origin].x,tree[currentPair.origin].y,tree[currentPair.destination].x,tree[currentPair.destination].y);
     targetRectangle.style.left = `${tree[currentPair.destination].x}px`;
     targetRectangle.style.top = `${tree[currentPair.destination].y}px`;
     originRectangle.style.left = `${tree[currentPair.origin].x}px`;
     originRectangle.style.top = `${tree[currentPair.origin].y}px`;
 
-    questionText.textContent = `Your origin folder is "${tree[currentPair.origin].name}".
-      Your destination folder is "${tree[currentPair.destination].name}".`; 
+    questionText.innerHTML = `Your origin folder is <span id="origin-folder-text">"${tree[currentPair.origin].name}"</span>.
+      Your destination folder is <span id="target-folder-text">"${tree[currentPair.destination].name}"</span>.`; 
 
-    questionIllustration.src = "images/Lulu_tree_4.png";
+    questionIllustration.src = "images/Lulu_tree_5_eng.png";
     questionIllustration.classList.remove('hidden'); 
   //  illustrationContainer.classList.remove('hidden'); 
     updateScoreDisplay(); 
@@ -213,7 +252,7 @@ function loadQuestion() {
 
 function checkAnswer() {
     let correctAns = "cd ";
-
+ 
     if (tree[origin].level1 === tree[destination].level1) {
         if (tree[origin].level2 === tree[destination].level2) {
             if (tree[origin].index ===1 ) {
@@ -285,11 +324,58 @@ function checkAnswer() {
                 break;    
         };
     }
-    console.log(correctAns);
+
+
+    if (tree[origin].index === 4) {
+       correctAns = "cd ../home/penguin-Lulu"; 
+
+       if (tree[destination].level1 != "..") {
+        correctAns += "/" + tree[destination].level1;
+        if (tree[destination].level2 != "..") {
+            correctAns += "/" + tree[destination].level2;
+            if (tree[destination].level3 != "..") {
+              correctAns += "/" + tree[destination].level3;
+           } 
+        }
+    }
+    }
+
+    let altAns1 = "cd ~";
+    let altAns2 = "cd /home/penguin-Lulu";
+    let altAns = "";
+
+    if (tree[destination].level1 != "..") {
+        altAns += tree[destination].level1;
+        if (tree[destination].level2 != "..") {
+            altAns += "/" + tree[destination].level2;
+            if (tree[destination].level3 != "..") {
+              altAns += "/" + tree[destination].level3;
+           } 
+        }
+    }
+
+    altAns1 += "/" + altAns;
+    altAns2 += "/" + altAns;
+
+    if (tree[origin].index === 4) {
+        correctAns = "cd ../home/penguin-Lulu" + "/" + altAns;
+    }
+    if (tree[origin].index === 5) {
+        correctAns = "cd penguin-Lulu/" + altAns;
+    }
+    if (tree[origin].index === 6) {
+        correctAns = "cd home/penguin-Lulu/" + altAns;
+    }
+
+    if (destination === 0) { 
+        correctAns = correctAns.slice(0,-1);
+        altAns1 =altAns1.slice(0,-1);
+        altAns2 =altAns2.slice(0,-1);
+    }
 
     const userAns = userAnswerInput.value;
     
-    if (userAns === correctAns) {
+    if (userAns === correctAns || userAns === altAns1 || userAns === altAns2) {
         score++;
         resultMessage.textContent = "✅ Correct! Great job!";
         resultMessage.style.color = 'green';
@@ -298,7 +384,7 @@ function checkAnswer() {
         resultMessage.style.color = 'red';
     }
     
-    explanationText.innerHTML = `Right answer: "${correctAns}"`;
+    explanationText.innerHTML = `Right answers:<p>${correctAns}</p><p>${altAns1}</p><p>${altAns2}</p>`;
     
     interactionArea.classList.add('hidden'); // Hide input/submit
     feedbackArea.classList.remove('hidden'); // Show feedback/next button
@@ -316,15 +402,25 @@ function nextQuestion() {
 }
 
 function endGame() {
-    const quizCard = document.getElementById('quiz-card');
+  //  const quizCard = document.getElementById('quiz-card');
     targetRectangle.classList.toggle('visible-highlight');
     originRectangle.classList.toggle('visible-highlight');
-    arrowSVG.classList.add('visible-highlight');
+  //  arrowSVG.classList.add('visible-highlight');
     quizCard.innerHTML = `
-        <h2>Game Over! 🥳</h2>
-        <p>You finished all the questions.</p>
-        <p>Your final score is: **${score} out of ${total}**.</p>
-        <button id="again-button" onclick="location.reload()">Play Again</button>
+    <div class="result"> 
+        <div>
+            <img src="images/Lulu_dance1.gif">
+        </div>    
+        <div>   
+            <h2>Game Over! 🥳</h2>
+            <p>You finished all the questions.</p>
+            <p>Your final score is: **${score} out of ${total}**.</p>
+            <button id="again-button" onclick="location.reload()">Play Again</button>
+        </div>
+        <div>
+            <img src="images/Lulu_dance1.gif">
+        </div> 
+    </div>  
     `;
 };
 

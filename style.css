@@ -1,38 +1,30 @@
-/* Basic Reset */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    /* Use Flexbox to stack header, main, and footer */
     display: flex;
     flex-direction: column;
-    /* Ensure the body takes up the full viewport height */
     min-height: 100vh; 
 }
 
-/* 1. HEADER Styling */
 #game-header {
-    background-color: #007bff; /* Bright color */
+    background-color: #007bff; 
     color: white;
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Header content should not grow */
     flex-shrink: 0; 
 }
 
-/* 2. MAIN Content Styling */
 #game-main-content {
-    /* This is the key: the main content takes up all available vertical space */
     flex-grow: 1; 
-    display: flex; /* Use Flexbox/Grid to center the quiz-card inside */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
     padding: 20px;
-    background-color: #f8f9fa; /* Light background */
+    background-color: #f8f9fa; 
 }
 
-/* Style the card itself */
 #quiz-card {
     background-color: white;
     padding: 30px;
@@ -43,41 +35,34 @@ body {
     text-align: center;
 }
 
-/* 3. FOOTER Styling */
 #game-footer {
-    background-color: #343a40; /* Dark color */
+    background-color: #343a40;
     color: #f1f1f1;
     padding: 10px;
     text-align: center;
     font-size: 0.8em;
-    /* Footer content should not grow */
     flex-shrink: 0; 
 }
 
-/* Utility Class for JavaScript to hide/show elements */
 .hidden {
     display: none;
 }
-/* Updated quiz-card for internal layout */
 #quiz-card {
-    background-color: white;
+    background-color: #fefcfe;
     padding: 20px; /* Reduced padding slightly as content will take up more space */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    max-width: 1200px; /* Increased max-width to accommodate two halves */
+    max-width: 1111px; /* Increased max-width to accommodate two halves */
     width: 100%;
-    /* text-align: center;  No longer centered globally, content inside will align */
 }
 
-/* NEW: Flexbox container for side-by-side layout */
 .card-content-wrapper {
     display: flex; /* Makes direct children (text-content, illustration-container) sit side-by-side */
     gap: 20px; /* Space between the text and the image */
     align-items: flex-start; /* Align items to the top (important for varying text heights) */
-    min-width: 1090px;
+    min-width: 1111px;
 }
 
-/* NEW: Styling for the text content side */
 .text-content {
     flex: 1; /* Allows this div to take up available space (approx 50%) */
     min-width: 0; /* Prevents overflow with long words */
@@ -85,19 +70,17 @@ body {
     padding-right: 10px; /* Small padding for visual separation */
 }
 
-/* NEW: Styling for the illustration side */
 #illustration-container {
     flex: 2; /* Allows this div to take up available space (approx 50%) */
     display: flex; /* Use flex to center the image within its container if needed */
     justify-content: center;
     align-items: center;
-    min-width: 0; /* Prevents overflow */
+    min-width: 0px; /* Prevents overflow */
     border-left: 1px solid #eee; /* Optional: a subtle separator line */
     padding-left: 20px;
 }
 
 #question-illustration {
-   /*  max-width: 100%; Ensures image doesn't overflow its container */
     height: auto; /* Maintains aspect ratio */
     border-radius: 5px; /* Slightly rounded corners for the image */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -107,14 +90,11 @@ body {
     max-height: none !important;
 }
 
-/* Adjustments for text elements within .text-content */
 .text-content #question-text,
 .text-content #intro-text {
     font-size: 1.5em; /* Make question prominent */
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
-
-
 
 .text-content #user-answer {
     width: calc(100% - 22px); /* Adjust width to fit with padding/border */
@@ -183,17 +163,35 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Intro Text */
 #intro-text {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.1em;
     line-height: 1.6;
     color: #333;
     text-align: left;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
-/* Start Button */
+#intro1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: blue;
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+#intro2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: red;
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
 #start-button, #again-button {
     display: inline-block;
     padding: 12px 25px;
@@ -220,29 +218,22 @@ body {
     transform: translateY(1px);
 }
 
-/* Make the container the reference point for absolute positioning */
 #illustration-container {
     position: relative; 
     display: inline-block; /* Crucial: Shrinks container to the size of the image */
-    /* Ensure the illustration is visible before running this */
 }
 
-/* Style the transparent rectangle */
 #target-rectangle {
-    /* Appearance */
-    width: 172px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
+    width: 172px; 
+    height: 30px; 
     background-color: rgba(255, 0, 0, 0.1); /* Semi-transparent RED */
     border: 2px solid red; /* Clear border to define the area */
     border-radius: 5px;
-
-    /* Positioning to the Center */
     position: absolute;
     top: 50%;
     left: 50%;
     /* Use translate to truly center based on its own dimensions */
     transform: translate(-50%, -50%); 
-    
     /* Initial state: Hidden */
     opacity: 0;
     visibility: hidden;
@@ -250,27 +241,24 @@ body {
 }
 
 #origin-rectangle {
-    /* Appearance */
-    width: 172px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
+    width: 172px; 
+    height: 30px; 
     background-color: rgba(30, 0, 255, 0.1); /* Semi-transparent RED */
     border: 2px solid rgb(0, 8, 255); /* Clear border to define the area */
     border-radius: 5px;
-
     /* Positioning to the Center */
     position: absolute;
     top: 50%;
     left: 50%;
     /* Use translate to truly center based on its own dimensions */
     transform: translate(-50%, -50%); 
-    
     /* Initial state: Hidden */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
 }
 
-/* CSS class to show the rectangle */
+/* class to show the rectangle */
 .visible-highlight {
     opacity: 1 !important;
     visibility: visible !important;
@@ -282,14 +270,44 @@ body {
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Style the SVG line and arrowhead */
+@keyframes blink {
+    0%, 100% { 
+        opacity: 1; 
+    }
+    50% { 
+        opacity: 0; 
+    }
+}
+
 #arrow-line {
-    stroke: #007bff; /* Blue line color */
+    stroke: #007bff; 
     stroke-width: 3;
     transition: stroke 0.3s ease, stroke-width 0.3s ease;
-    stroke: rgba(255, 0, 234, 0.3);
+    stroke: rgba(255, 0, 234, 0.4);
+    animation: blink 1s infinite steps(1);
 }
 #arrowhead polygon {
-    fill: rgba(255, 0, 234, 0.3);
+    fill: rgba(255, 0, 234, 0.4);
     transition: fill 0.3s ease;
+    animation: blink 1s infinite steps(1);
+}
+
+#origin-folder-text {
+    font-weight: bold; 
+    transition: color 0.3s ease; 
+    color: #007bff;
+}
+
+#target-folder-text {
+    font-weight: bold; 
+    transition: color 0.3s ease; 
+    color: #ff0000;
+}
+
+.result {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 60px;
+    background-color: #fefcfe;
 }
